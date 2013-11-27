@@ -9,18 +9,20 @@ I wanted a simple program that can convert Microsoft Office documents to PDF but
 
 <b>Usage:</b>
 
-java -jar doc-converter.jar -type "type" -inputPath "path" -outputPath "path"<br>
+java -jar doc-converter.jar -type "type" -inputPath "path" -outputPath "path" -verbose<br>
 eg. <br>
 java -jar doc-converter.jar -inputPath test.doc<br>
 java -jar doc-converter.jar -i test.ppt -o ~\output.pdf<br>
-java -jar doc-converter.jar -i ~\noExtDOCXFile -o ~\output.pdf -t docx<br>
+java -jar doc-converter.jar -i ~\no-extension-file -o ~\output.pdf -t docx<br>
 
 <b>Parameters:</b><br>
 -inputPath (-i, -in, -input) "path"    : specifies a path for the input file<br>
  
--outputPath (-o, -out, -output) "path" : specifies a path for the output PDF, use input file directory and name if not specified (Optional)<br>
+-outputPath (-o, -out, -output) "path" : specifies a path for the output PDF, use input file directory and name.pdf if not specified (Optional)<br>
 
 -type (-t) [doc | docx | ppt | pptx]   : Specifies doc converter. Leave blank to let program infer by input extension (Optional)<br>
+
+-verbose (-v)                          : To view intermediate processing messages. (Optional)<br>
 
 
 <b>Caveats:</b><br>
