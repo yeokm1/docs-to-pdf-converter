@@ -1,4 +1,4 @@
-docs-to-pdf-converter
+Docs to PDF Converter
 =====================
 
 A standalone Java command line tool that converts DOC, DOCX, PPT and PPTX documents to pdf files. (Requires JRE 7.)
@@ -40,3 +40,7 @@ Resulting file is a PDF comprising of PNG images in each page. This is the limit
 Apache POI:  https://poi.apache.org/<br>
 docx4j: http://www.docx4java.org/<br>
 and others...<br>
+<br>
+The MIT License (MIT)<br>
+Copyright (c) 2013-2014 Yeo Kheng Meng<br>
+
