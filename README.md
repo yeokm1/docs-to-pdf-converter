@@ -13,7 +13,7 @@ java -jar doc-converter.jar -type "type" -inputPath "path" -outputPath "path"<br
 eg. <br>
 java -jar doc-converter.jar -inputPath test.doc<br>
 java -jar doc-converter.jar -i test.ppt -o ~\output.pdf<br>
-java -jar doc-converter.jar -i ~\noExtDOCXFile -o ~\output.pdf -t docx<br>
+java -jar doc-converter.jar -i ~\no-extension-file -o ~\output.pdf -t docx<br>
 
 <b>Parameters:</b><br>
 -inputPath (-i, -in, -input) "path"    : specifies a path for the input file<br>
