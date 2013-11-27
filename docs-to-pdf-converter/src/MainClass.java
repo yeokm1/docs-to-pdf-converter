@@ -9,6 +9,8 @@ import org.kohsuke.args4j.Option;
 
 public class MainClass{
 
+
+	public static final String VERSION_STRING = "\nDocs to PDF Converter Version 1.0\n\nThe MIT License (MIT)\nCopyright (c) 2013-2014 Yeo Kheng Meng";
 	public enum DOC_TYPE {
 		DOC,
 		DOCX,
@@ -18,11 +20,18 @@ public class MainClass{
 
 
 	public static void main(String[] args){
-		Converter converter = processArguments(args);
+		Converter converter;
+
+		try{
+			converter = processArguments(args);
+		} catch ( IllegalArgumentException e){
+			System.out.println("Input file not specified.");
+			return;
+		}
 
 
 		if(converter == null){
-			System.out.println("Unable to determine type of input file");
+			System.out.println("Unable to determine type of input file.");
 		} else {
 			try {
 				converter.convert();
@@ -34,7 +43,7 @@ public class MainClass{
 	}
 
 
-	public static Converter processArguments(String[] args){
+	public static Converter processArguments(String[] args) throws IllegalArgumentException{
 		CommandLineValues values = new CommandLineValues();
 		CmdLineParser parser = new CmdLineParser(values);
 
@@ -42,9 +51,22 @@ public class MainClass{
 		try {
 			parser.parseArgument(args);
 
+			boolean version = values.version;
+
+			if(version){
+				System.out.println(VERSION_STRING);
+				System.exit(0);
+			}
+
+
 			String inPath = values.inFilePath;
 			String outPath = values.outFilePath;
 			boolean shouldShowMessages = values.verbose;
+
+
+			if(inPath == null){
+				throw new IllegalArgumentException();
+			}
 
 			if(outPath == null){
 				outPath = changeExtensionToPDF(inPath);
@@ -108,7 +130,7 @@ public class MainClass{
 		public DOC_TYPE type = null;
 
 
-		@Option(name = "-inputPath", aliases = {"-i", "-in", "-input"}, required = true,  metaVar = "<path>",
+		@Option(name = "-inputPath", aliases = {"-i", "-in", "-input"}, required = false,  metaVar = "<path>",
 				usage = "Specifies a path for the input file.")
 		public String inFilePath = null;
 
@@ -119,6 +141,9 @@ public class MainClass{
 
 		@Option(name = "-verbose", aliases = {"-v"}, required = false, usage = "To see intermediate processing messages.")
 		public boolean verbose = false;
+
+		@Option(name = "-version", aliases = {"-ver"}, required = false, usage = "To view version code.")
+		public boolean version = false;
 
 
 	}
