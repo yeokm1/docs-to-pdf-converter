@@ -30,7 +30,7 @@ This tool relies on Apache POI and docx4j libraries. They are not 100% reliable 
 
 
 DOC and DOCX:<br>
-Generally ok.<br>
+Generally ok. I notice that after conversion, the paragraph spacing tends to increase affecting your page layout.<br>
 
 PPT and PPTX<br>
 Resulting file is a PDF comprising of PNG images in each page. This is the limitation of the Apache POI and docx4j libraries.<br>
