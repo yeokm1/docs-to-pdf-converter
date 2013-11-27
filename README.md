@@ -5,7 +5,7 @@ A standalone Java command line tool that converts DOC, DOCX, PPT and PPTX docume
 
 
 <b>Why?</b><br>
-I wanted a simple program that can convert Microsoft Office documents to PDF but without dependencies like LibreOffice or expensive proprietary solutions.<br>
+I wanted a simple program that can convert Microsoft Office documents to PDF but without dependencies like LibreOffice or expensive proprietary solutions. Seeing as how code to convert each individual format is scattered around the web, I decided to combine all those solutions into one single program.<br>
 
 <b>Usage:</b>
 
@@ -30,7 +30,7 @@ This tool relies on Apache POI and docx4j libraries. They are not 100% reliable 
 
 
 DOC and DOCX:<br>
-Generally ok.<br>
+Generally ok. I notice that after conversion, the paragraph spacing tends to increase affecting your page layout.<br>
 
 PPT and PPTX<br>
 Resulting file is a PDF comprising of PNG images in each page. This is the limitation of the Apache POI and docx4j libraries.<br>
