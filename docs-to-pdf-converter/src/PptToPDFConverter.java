@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.io.FileInputStream;
@@ -33,6 +34,11 @@ public class PptToPDFConverter extends PptxToPDFConverter {
 	@Override
 	protected void drawOntoThisGraphic(int index, Graphics2D graphics){
 		slides[index].draw(graphics);
+	}
+	
+	@Override
+	protected Color getSlideBGColor(int index){
+		return slides[index].getBackground().getFill().getForegroundColor();
 	}
 
 }

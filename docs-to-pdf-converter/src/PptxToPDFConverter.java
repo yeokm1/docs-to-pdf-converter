@@ -54,7 +54,7 @@ public class PptxToPDFConverter extends Converter{
 			Graphics2D graphics = bufImg.createGraphics();
 			graphics.setTransform(at);
 			//clear the drawing area
-			graphics.setPaint(Color.white);
+			graphics.setPaint(getSlideBGColor(i));
 			graphics.fill(new Rectangle2D.Float(0, 0, pgsize.width, pgsize.height));
 			try{
 				drawOntoThisGraphic(i, graphics);
@@ -91,6 +91,10 @@ public class PptxToPDFConverter extends Converter{
 	
 	protected void drawOntoThisGraphic(int index, Graphics2D graphics){
 		slides[index].draw(graphics);
+	}
+	
+	protected Color getSlideBGColor(int index){
+		return slides[index].getBackground().getFillColor();
 	}
 	
 	
