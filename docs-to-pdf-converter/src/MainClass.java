@@ -117,7 +117,7 @@ public class MainClass{
 				usage = "Specifies a path for the output PDF.")
 		public String outFilePath = null;
 
-		@Option(name = "-verbose", aliases = {"-v"}, required = false, usage = "To see intemediate processing messages.")
+		@Option(name = "-verbose", aliases = {"-v"}, required = false, usage = "To see intermediate processing messages.")
 		public boolean verbose = false;
 
 
