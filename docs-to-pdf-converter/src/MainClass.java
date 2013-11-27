@@ -17,6 +17,8 @@ public class MainClass{
 		PPT,
 		PPTX
 	}
+	
+	private static PrintStream originalStdout = null;
 
 
 	public static void main(String[] args){
@@ -25,17 +27,26 @@ public class MainClass{
 		try{
 			converter = processArguments(args);
 		} catch ( IllegalArgumentException e){
+			if(originalStdout != null) {
+				System.setOut(originalStdout);
+			}
 			System.out.println("\n\nInput file not specified.");
 			return;
 		}
 
 
 		if(converter == null){
+			if(originalStdout != null) {
+				System.setOut(originalStdout);
+			}
 			System.out.println("Unable to determine type of input file.");
 		} else {
 			try {
 				converter.convert();
 			} catch (Exception e) {
+				if(originalStdout != null) {
+					System.setOut(originalStdout);
+				}
 				e.printStackTrace();
 			}
 		}
@@ -73,13 +84,6 @@ public class MainClass{
 				outPath = changeExtensionToPDF(inPath);
 			}
 
-			if(!shouldShowMessages){
-				System.setOut(new PrintStream(new OutputStream() {
-					public void write(int b) {
-						//DO NOTHING
-					}
-				}));
-			}
 
 			if(values.type == null){
 				if(inPath.endsWith("doc")){
@@ -112,6 +116,16 @@ public class MainClass{
 				}
 
 
+			}
+			
+			if(!shouldShowMessages){
+				originalStdout = System.out;
+				
+				System.setOut(new PrintStream(new OutputStream() {
+					public void write(int b) {
+						//DO NOTHING
+					}
+				}));
 			}
 
 		} catch (CmdLineException e) {
