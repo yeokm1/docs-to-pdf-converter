@@ -25,7 +25,7 @@ public class MainClass{
 		try{
 			converter = processArguments(args);
 		} catch ( IllegalArgumentException e){
-			System.out.println("Input file not specified.");
+			System.out.println("\n\nInput file not specified.");
 			return;
 		}
 
@@ -65,6 +65,7 @@ public class MainClass{
 
 
 			if(inPath == null){
+				parser.printUsage(System.err);
 				throw new IllegalArgumentException();
 			}
 
