@@ -20,7 +20,7 @@ java -jar doc-converter.jar -i ~\no-extension-file -o ~\output.pdf -t docx<br>
  
 -outputPath (-o, -out, -output) "path" : specifies a path for the output PDF, use input file directory and name.pdf if not specified (Optional)<br>
 
--type (-t) [DOC | DOCX | PPT | PPTX | ODT] : Specifies doc converter. Leave blank to let program infer via file  extension<br>
+-type (-t) [DOC | DOCX | PPT | PPTX | ODT] : Specifies doc converter. Leave blank to let program infer via file  extension {Optional)<br>
 
 -verbose (-v) : To view intermediate processing messages. (Optional)<br>
 
