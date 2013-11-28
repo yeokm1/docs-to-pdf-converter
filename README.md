@@ -30,7 +30,7 @@ This tool relies on Apache POI, xdocreport, docx4j and odfdom libraries. They ar
 
 
 DOC:<br>
-Generally ok but takes some time to convert.. I notice that after conversion, the paragraph spacing tends to increase affecting your page layout. Conversion is done using docx4j to convert DOC to DOCX then to PDF. Cannot use xdocreport once the DOCX data is obtained as the intermediate data structure is docx4j specific.<br>
+Generally ok but takes some time to convert.. I notice that after conversion, the paragraph spacing tends to increase affecting your page layout. Conversion is done using docx4j to convert DOC to DOCX then to PDF.<br>(Cannot use xdocreport once the DOCX data is obtained as the intermediate data structure is docx4j specific.)<br>
 
 DOCX:<br>
 Very good results. Fast conversion too.  Conversion is done using xdocreport library as it seems faster and more accurate then docx4j.<br>
