@@ -11,12 +11,13 @@ import org.kohsuke.args4j.Option;
 public class MainClass{
 
 
-	public static final String VERSION_STRING = "\nDocs to PDF Converter Version 1.2 (28 Nov 2013)\n\nThe MIT License (MIT)\nCopyright (c) 2013-2014 Yeo Kheng Meng";
+	public static final String VERSION_STRING = "\nDocs to PDF Converter Version 1.3 (28 Nov 2013)\n\nThe MIT License (MIT)\nCopyright (c) 2013-2014 Yeo Kheng Meng";
 	public enum DOC_TYPE {
 		DOC,
 		DOCX,
 		PPT,
-		PPTX
+		PPTX,
+		ODT
 	}
 	
 	private static PrintStream originalStdout = null;
@@ -87,15 +88,19 @@ public class MainClass{
 			}
 
 
+			String lowerCaseInPath = inPath.toLowerCase();
+			
 			if(values.type == null){
-				if(inPath.endsWith("doc")){
+				if(lowerCaseInPath.endsWith("doc")){
 					converter = new DocToPDFConverter(inPath, outPath);
-				} else if (inPath.endsWith("docx")){
+				} else if (lowerCaseInPath.endsWith("docx")){
 					converter = new DocxToPDFConverter(inPath, outPath);
-				} else if(inPath.endsWith("ppt")){
+				} else if(lowerCaseInPath.endsWith("ppt")){
 					converter = new PptToPDFConverter(inPath, outPath);
-				} else if(inPath.endsWith("pptx")){
+				} else if(lowerCaseInPath.endsWith("pptx")){
 					converter = new PptxToPDFConverter(inPath, outPath);
+				} else if(lowerCaseInPath.endsWith("odt")){
+					converter = new OdtToPDF(inPath, outPath);
 				} else {
 					converter = null;
 				}
@@ -111,6 +116,8 @@ public class MainClass{
 				case PPT:  converter = new PptToPDFConverter(inPath, outPath);
 				break;
 				case PPTX: converter = new PptxToPDFConverter(inPath, outPath);
+				break;
+				case ODT: converter = new OdtToPDF(inPath, outPath);
 				break;
 				default: converter = null;
 				break;

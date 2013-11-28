@@ -50,5 +50,7 @@
 	<classpathentry kind="lib" path="libs/args4j-2.0.21.jar"/>
 	<classpathentry kind="lib" path="libs/ooxml-schemas-1.1.jar"/>
 	<classpathentry kind="lib" path="libs/poi-ooxml-3.9.jar"/>
+	<classpathentry kind="lib" path="libs/odfdom-java-0.8.7.jar"/>
+	<classpathentry kind="lib" path="libs/xercesImpl-2.11.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
