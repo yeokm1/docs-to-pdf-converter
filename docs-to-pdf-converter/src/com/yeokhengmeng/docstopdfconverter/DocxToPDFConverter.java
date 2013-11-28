@@ -1,10 +1,11 @@
 package com.yeokhengmeng.docstopdfconverter;
+
 import java.io.FileInputStream;
-import java.io.OutputStream;
+import java.io.FileOutputStream;
 
-import org.docx4j.Docx4J;
-import org.docx4j.openpackaging.packages.WordprocessingMLPackage;
-
+import org.apache.poi.xwpf.converter.pdf.PdfConverter;
+import org.apache.poi.xwpf.converter.pdf.PdfOptions;
+import org.apache.poi.xwpf.usermodel.XWPFDocument;
 
 public class DocxToPDFConverter extends Converter {
 
@@ -12,32 +13,30 @@ public class DocxToPDFConverter extends Converter {
 		super(inputFilePath, outputFilePath);
 	}
 
-
 	@Override
-	public void convert() throws Exception{
+	public void convert() throws Exception {
+		
 		startTime();
 
 		showLoadingMessage();
+		// 1) Load DOCX into XWPFDocument
+        
+		
+		FileInputStream is = getInFileStream();
+        XWPFDocument document = new XWPFDocument(is);
 
-		FileInputStream iStream = getInFileStream();
+        // 2) Prepare Pdf options
+        PdfOptions options = PdfOptions.create();
 
+        // 3) Convert XWPFDocument to Pdf
+        FileOutputStream out = getOutFileStream();
+        
+        showProcessingMessage();
+        PdfConverter.getInstance().convert(document, out, options);
+        
+        showFinishedMessage();
+        
 
-		WordprocessingMLPackage wordMLPackage = getMLPackage(iStream);
-
-		iStream.close();
-
-		OutputStream os = getOutFileStream();
-
-		showProcessingMessage();
-		Docx4J.toPDF(wordMLPackage, os);
-		os.close();
-
-		showFinishedMessage();
-
-	}
-
-	protected WordprocessingMLPackage getMLPackage(FileInputStream iStream) throws Exception{
-		return WordprocessingMLPackage.load(iStream);
 	}
 
 }

@@ -42,11 +42,13 @@
 	<classpathentry kind="lib" path="libs/xmlgraphics-commons-1.5.jar"/>
 	<classpathentry kind="lib" path="libs/itext-4.2.1.jar"/>
 	<classpathentry kind="lib" path="libs/itextpdf-5.4.4.jar"/>
-	<classpathentry kind="lib" path="libs/poi-ooxml-3.9.jar"/>
 	<classpathentry kind="lib" path="libs/dom4j-1.6.1.jar"/>
+	<classpathentry kind="lib" path="libs/xdocreport-1.0.3.jar"/>
 	<classpathentry kind="lib" path="libs/poi-ooxml-schemas-3.9.jar"/>
 	<classpathentry kind="lib" path="libs/poi-3.9-20121203.jar"/>
 	<classpathentry kind="lib" path="libs/xmlbeans-2.6.0.jar"/>
 	<classpathentry kind="lib" path="libs/args4j-2.0.21.jar"/>
+	<classpathentry kind="lib" path="libs/ooxml-schemas-1.1.jar"/>
+	<classpathentry kind="lib" path="libs/poi-ooxml-3.9.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
