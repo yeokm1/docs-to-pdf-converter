@@ -5,7 +5,7 @@ A standalone Java command line tool that converts DOC, DOCX, PPT, PPTX and ODT d
 
 
 <b>Why?</b><br>
-I wanted a simple program that can convert Microsoft Office documents to PDF but without dependencies like LibreOffice or expensive proprietary solutions. Along the way, I decided to add ODT support as well. Seeing as how code to convert each individual format is scattered around the web, I decided to combine all those solutions into one single program.<br>
+I wanted a simple program that can convert Microsoft Office documents to PDF but without dependencies like LibreOffice or expensive proprietary solutions. Along the way, I decided to add ODT support as well since I encountered the code too. Seeing as how code and libraries to convert each individual format is scattered around the web, I decided to combine all those solutions into one single program.<br>
 
 <b>Usage:</b>
 
@@ -30,10 +30,10 @@ This tool relies on Apache POI, xdocreport, docx4j and odfdom libraries. They ar
 
 
 DOC:<br>
-Generally ok but takes some time to convert.. I notice that after conversion, the paragraph spacing tends to increase affecting your page layout. Conversion is done using docx4j to convert DOC to DOCX then to PDF.<br>
+Generally ok but takes some time to convert.. I notice that after conversion, the paragraph spacing tends to increase affecting your page layout. Conversion is done using docx4j to convert DOC to DOCX then to PDF. Cannot use xdocreport once the DOCX data is obtained as the intermediate data structure is docx4j specific.<br>
 
 DOCX:<br>
-Very good results. Fast conversion too.  Conversion is done using xdocreport library.<br>
+Very good results. Fast conversion too.  Conversion is done using xdocreport library as it seems faster and more accurate then docx4j.<br>
 
 PPT and PPTX:<br>
 Resulting file is a PDF comprising of a PNG embedded in each page. Should be good enough for printing. This is the limitation of the Apache POI and docx4j libraries.<br>
