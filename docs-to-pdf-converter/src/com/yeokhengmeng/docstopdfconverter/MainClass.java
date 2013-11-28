@@ -28,30 +28,31 @@ public class MainClass{
 		try{
 			converter = processArguments(args);
 		} catch ( IllegalArgumentException e){
-			if(originalStdout != null) {
-				System.setOut(originalStdout);
-			}
+			enableStdout();
 			System.out.println("\n\nInput file not specified.");
 			return;
 		}
 
 
 		if(converter == null){
-			if(originalStdout != null) {
-				System.setOut(originalStdout);
-			}
+			enableStdout();
 			System.out.println("Unable to determine type of input file.");
 		} else {
 			try {
 				converter.convert();
 			} catch (Exception e) {
-				if(originalStdout != null) {
-					System.setOut(originalStdout);
-				}
+				enableStdout();
 				e.printStackTrace();
 			}
 		}
 
+	}
+
+
+	private static void enableStdout() {
+		if(originalStdout != null) {
+			System.setOut(originalStdout);
+		}
 	}
 
 
