@@ -11,7 +11,7 @@ import org.kohsuke.args4j.Option;
 public class MainClass{
 
 
-	public static final String VERSION_STRING = "\nDocs to PDF Converter Version 1.3 (28 Nov 2013)\n\nThe MIT License (MIT)\nCopyright (c) 2013-2014 Yeo Kheng Meng";
+	public static final String VERSION_STRING = "\nDocs to PDF Converter Version 1.4 (29 Nov 2013)\n\nThe MIT License (MIT)\nCopyright (c) 2013-2014 Yeo Kheng Meng";
 	public enum DOC_TYPE {
 		DOC,
 		DOCX,

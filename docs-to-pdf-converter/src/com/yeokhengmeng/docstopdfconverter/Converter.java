@@ -10,11 +10,12 @@ import java.io.IOException;
 public abstract class Converter {
 
 	
-	private final String LOADING_FORMAT = "Loading file from %1$s\n";
-	private final String PROCESSING_FORMAT = "Processing %1$s\n";
-	private final String SAVING_FORMAT = "Saved to %1$s, conversion took %2$dms\n";
+	private final String LOADING_FORMAT = "\nLoading file \"%1$s\"\n\n";
+	private final String PROCESSING_FORMAT = "Load completed in %1$dms, now converting...\n\n";
+	private final String SAVING_FORMAT = "Conversion to \"%1$s\" took %2$dms.\n\nTotal: %3$dms\n";
 	
 	private long startTime;
+	private long startOfProcessTime;
 	
 	protected String inputFilePath;
 	protected String outputFilePath;
@@ -27,21 +28,34 @@ public abstract class Converter {
 	
 	public abstract void convert() throws Exception;
 	
-	protected void startTime(){
+	private void startTime(){
 		startTime = System.currentTimeMillis();
+		startOfProcessTime = startTime;
 	}
 	
 	protected void showLoadingMessage(){
 		System.out.format(LOADING_FORMAT, inputFilePath);
+		startTime();
 	}
 	
 	protected void showProcessingMessage(){
-		System.out.format(PROCESSING_FORMAT, inputFilePath);
+		long currentTime = System.currentTimeMillis();
+		long prevProcessTook = currentTime - startOfProcessTime;
+		
+		System.out.format(PROCESSING_FORMAT, prevProcessTook);
+		
+		startOfProcessTime = System.currentTimeMillis();
+		
 	}
 	
 	protected void showFinishedMessage(){
-		long timeTaken = System.currentTimeMillis() - startTime;
-		System.out.format(SAVING_FORMAT, outputFilePath, timeTaken);
+		long currentTime = System.currentTimeMillis();
+		long timeTaken = currentTime - startTime;
+		long prevProcessTook = currentTime - startOfProcessTime;
+
+		startOfProcessTime = System.currentTimeMillis();
+		
+		System.out.format(SAVING_FORMAT, outputFilePath, prevProcessTook, timeTaken);
 	}
 	
 	protected FileInputStream getInFileStream() throws FileNotFoundException{

@@ -17,7 +17,6 @@ public class DocToPDFConverter extends Converter {
 
 	@Override
 	public void convert() throws Exception{
-		startTime();
 
 		showLoadingMessage();
 

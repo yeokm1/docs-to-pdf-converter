@@ -15,7 +15,6 @@ public class DocxToPDFConverter extends Converter {
 
 	@Override
 	public void convert() throws Exception {
-		startTime();
 		showLoadingMessage();       
 		
 		FileInputStream is = getInFileStream();

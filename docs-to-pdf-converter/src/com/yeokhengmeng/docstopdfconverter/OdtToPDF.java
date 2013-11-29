@@ -16,7 +16,6 @@ public class OdtToPDF extends Converter {
 
 	@Override
 	public void convert() throws Exception {
-		startTime();
 		showLoadingMessage();       
 
 		FileInputStream inStream = getInFileStream();

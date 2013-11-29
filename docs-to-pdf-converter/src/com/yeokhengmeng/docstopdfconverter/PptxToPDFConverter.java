@@ -30,7 +30,6 @@ public class PptxToPDFConverter extends Converter{
 
 	@Override
 	public void convert() throws Exception {
-		startTime();
 		showLoadingMessage();
 		
 
