@@ -1,13 +1,13 @@
 Docs to PDF Converter
 =====================
 
-A standalone Java command line tool that converts DOC, DOCX, PPT, PPTX and ODT documents to pdf files. (Requires JRE 7.)
+A standalone Java library/command line tool that converts DOC, DOCX, PPT, PPTX and ODT documents to pdf files. (Requires JRE 6)
 
 
 <b>Why?</b><br>
 I wanted a simple program that can convert Microsoft Office documents to PDF but without dependencies like LibreOffice or expensive proprietary solutions. Seeing as how code and libraries to convert each individual format is scattered around the web, I decided to combine all those solutions into one single program. Along the way, I decided to add ODT support as well since I encountered the code too. <br>
 
-<b>Usage:</b>
+<b>Command Line Usage:</b>
 
 java -jar doc-converter.jar -type "type" -input "path" -output "path" -verbose<br>
 eg. <br>
@@ -23,6 +23,17 @@ java -jar doc-converter.jar -i ~\no-extension-file -o ~\output.pdf -t docx<br>
 -type (-t) [DOC | DOCX | PPT | PPTX | ODT] : Specifies doc converter. Leave blank to let program infer via file  extension (Optional)<br>
 
 -verbose (-v) : To view intermediate processing messages. (Optional)<br>
+
+<b>Library Usage:</b><br>
+1. Drop the jar into your lib folder and add to build path.<br>
+2. Choose the converter of your choice, they are named DocToPDFConverter, DocxToPDFConverter, PptToPDFConverter, PptxToPDFConverter and OdtToPDFConverter.<br>
+3. Instantiate with 4 parameters<br>
+3a: InputStream inStream: Document source stream to be converted<br>
+3b: OutputStream outStream: Document output stream<br>
+3c: boolean showMessages: Whether to show intermediate processing messages to Standard Out (stdout)<br>
+3d: boolean closeStreamsWhenComplete: Whether to close input and output streams when complete<br>
+4. Call the "convert()" method and wait.<br>
+5. Done!<br>
 
 
 <b>Caveats and technical details:</b><br>
