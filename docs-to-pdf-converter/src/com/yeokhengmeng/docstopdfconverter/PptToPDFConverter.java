@@ -2,8 +2,9 @@ package com.yeokhengmeng.docstopdfconverter;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
-import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 
 import org.apache.poi.hslf.model.Slide;
 import org.apache.poi.hslf.usermodel.SlideShow;
@@ -12,18 +13,17 @@ public class PptToPDFConverter extends PptxToPDFConverter {
 
 	private Slide[] slides;
 	
-	
-	public PptToPDFConverter(String inputFilePath, String outputFilePath) {
-		super(inputFilePath, outputFilePath);
+	public PptToPDFConverter(InputStream inStream, OutputStream outStream, boolean showMessages, boolean closeStreamsWhenComplete) {
+		super(inStream, outStream, showMessages, closeStreamsWhenComplete);
 	}
+
 
 	@Override	
 	protected Dimension processSlides() throws IOException{
-		FileInputStream iStream = getInFileStream();
-		SlideShow ppt = new SlideShow(iStream);
+
+		SlideShow ppt = new SlideShow(inStream);
 		Dimension dimension = ppt.getPageSize();
 		slides = ppt.getSlides();
-		iStream.close();
 		return dimension;
 	}
 	

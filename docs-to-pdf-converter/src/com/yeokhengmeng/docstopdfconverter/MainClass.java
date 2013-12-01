@@ -1,6 +1,11 @@
 package com.yeokhengmeng.docstopdfconverter;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
-import java.io.PrintStream;
 
 import org.kohsuke.args4j.CmdLineException;
 import org.kohsuke.args4j.CmdLineParser;
@@ -11,7 +16,7 @@ import org.kohsuke.args4j.Option;
 public class MainClass{
 
 
-	public static final String VERSION_STRING = "\nDocs to PDF Converter Version 1.4 (29 Nov 2013)\n\nThe MIT License (MIT)\nCopyright (c) 2013-2014 Yeo Kheng Meng";
+	public static final String VERSION_STRING = "\nDocs to PDF Converter Version 1.5 (1 Dec 2013)\n\nThe MIT License (MIT)\nCopyright (c) 2013-2014 Yeo Kheng Meng";
 	public enum DOC_TYPE {
 		DOC,
 		DOCX,
@@ -20,29 +25,23 @@ public class MainClass{
 		ODT
 	}
 	
-	private static PrintStream originalStdout = null;
-
-
 	public static void main(String[] args){
 		Converter converter;
 
 		try{
 			converter = processArguments(args);
-		} catch ( IllegalArgumentException e){
-			enableStdout();
-			System.out.println("\n\nInput file not specified.");
+		} catch (Exception e){
+			System.out.println("\n\nInput\\Output file not specified properly.");
 			return;
 		}
 
 
 		if(converter == null){
-			enableStdout();
 			System.out.println("Unable to determine type of input file.");
 		} else {
 			try {
 				converter.convert();
 			} catch (Exception e) {
-				enableStdout();
 				e.printStackTrace();
 			}
 		}
@@ -50,14 +49,7 @@ public class MainClass{
 	}
 
 
-	private static void enableStdout() {
-		if(originalStdout != null) {
-			System.setOut(originalStdout);
-		}
-	}
-
-
-	public static Converter processArguments(String[] args) throws IllegalArgumentException{
+	public static Converter processArguments(String[] args) throws Exception{
 		CommandLineValues values = new CommandLineValues();
 		CmdLineParser parser = new CmdLineParser(values);
 
@@ -90,17 +82,20 @@ public class MainClass{
 
 			String lowerCaseInPath = inPath.toLowerCase();
 			
+			InputStream inStream = getInFileStream(inPath);
+			OutputStream outStream = getOutFileStream(outPath);
+			
 			if(values.type == null){
 				if(lowerCaseInPath.endsWith("doc")){
-					converter = new DocToPDFConverter(inPath, outPath);
+					converter = new DocToPDFConverter(inStream, outStream, shouldShowMessages, true);
 				} else if (lowerCaseInPath.endsWith("docx")){
-					converter = new DocxToPDFConverter(inPath, outPath);
+					converter = new DocxToPDFConverter(inStream, outStream, shouldShowMessages, true);
 				} else if(lowerCaseInPath.endsWith("ppt")){
-					converter = new PptToPDFConverter(inPath, outPath);
+					converter = new PptToPDFConverter(inStream, outStream, shouldShowMessages, true);
 				} else if(lowerCaseInPath.endsWith("pptx")){
-					converter = new PptxToPDFConverter(inPath, outPath);
+					converter = new PptxToPDFConverter(inStream, outStream, shouldShowMessages, true);
 				} else if(lowerCaseInPath.endsWith("odt")){
-					converter = new OdtToPDF(inPath, outPath);
+					converter = new OdtToPDF(inStream, outStream, shouldShowMessages, true);
 				} else {
 					converter = null;
 				}
@@ -109,15 +104,15 @@ public class MainClass{
 			} else {
 
 				switch(values.type){
-				case DOC: converter = new DocToPDFConverter(inPath, outPath);
+				case DOC: converter = new DocToPDFConverter(inStream, outStream, shouldShowMessages, true);
 				break; 
-				case DOCX: converter = new DocxToPDFConverter(inPath, outPath);
+				case DOCX: converter = new DocxToPDFConverter(inStream, outStream, shouldShowMessages, true);
 				break;
-				case PPT:  converter = new PptToPDFConverter(inPath, outPath);
+				case PPT:  converter = new PptToPDFConverter(inStream, outStream, shouldShowMessages, true);
 				break;
-				case PPTX: converter = new PptxToPDFConverter(inPath, outPath);
+				case PPTX: converter = new PptxToPDFConverter(inStream, outStream, shouldShowMessages, true);
 				break;
-				case ODT: converter = new OdtToPDF(inPath, outPath);
+				case ODT: converter = new OdtToPDF(inStream, outStream, shouldShowMessages, true);
 				break;
 				default: converter = null;
 				break;
@@ -127,16 +122,6 @@ public class MainClass{
 
 			}
 			
-			if(!shouldShowMessages){
-				originalStdout = System.out;
-				
-				System.setOut(new PrintStream(new OutputStream() {
-					public void write(int b) {
-						//DO NOTHING
-					}
-				}));
-			}
-
 		} catch (CmdLineException e) {
 			// handling of wrong arguments
 			System.err.println(e.getMessage());
@@ -198,6 +183,27 @@ public class MainClass{
 		String addPDFExtension = removedExtension + ".pdf";
 
 		return addPDFExtension;
+	}
+	
+	
+	protected static InputStream getInFileStream(String inputFilePath) throws FileNotFoundException{
+		File inFile = new File(inputFilePath);
+		FileInputStream iStream = new FileInputStream(inFile);
+		return iStream;
+	}
+	
+	protected static OutputStream getOutFileStream(String outputFilePath) throws IOException{
+		File outFile = new File(outputFilePath);
+		
+		try{
+			outFile.getParentFile().mkdirs();
+		} catch (NullPointerException e){
+			//Ignore error since it means not parent directories
+		}
+		
+		outFile.createNewFile();
+		FileOutputStream oStream = new FileOutputStream(outFile);
+		return oStream;
 	}
 
 

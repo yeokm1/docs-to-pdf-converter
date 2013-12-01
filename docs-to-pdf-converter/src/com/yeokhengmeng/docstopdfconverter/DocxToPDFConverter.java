@@ -1,7 +1,7 @@
 package com.yeokhengmeng.docstopdfconverter;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
 
 import org.apache.poi.xwpf.converter.pdf.PdfConverter;
 import org.apache.poi.xwpf.converter.pdf.PdfOptions;
@@ -9,24 +9,25 @@ import org.apache.poi.xwpf.usermodel.XWPFDocument;
 
 public class DocxToPDFConverter extends Converter {
 
-	public DocxToPDFConverter(String inputFilePath, String outputFilePath) {
-		super(inputFilePath, outputFilePath);
+
+	public DocxToPDFConverter(InputStream inStream, OutputStream outStream, boolean showMessages, boolean closeStreamsWhenComplete) {
+		super(inStream, outStream, showMessages, closeStreamsWhenComplete);
 	}
 
 	@Override
 	public void convert() throws Exception {
-		showLoadingMessage();       
+		loading();       
 		
-		FileInputStream is = getInFileStream();
-        XWPFDocument document = new XWPFDocument(is);
+
+        XWPFDocument document = new XWPFDocument(inStream);
 
         PdfOptions options = PdfOptions.create();
-        FileOutputStream out = getOutFileStream();
+
         
-        showProcessingMessage();
-        PdfConverter.getInstance().convert(document, out, options);
+        processing();
+        PdfConverter.getInstance().convert(document, outStream, options);
         
-        showFinishedMessage();
+        finished();
         
 	}
 

@@ -5,8 +5,9 @@ import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
-import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 
 import org.apache.poi.xslf.usermodel.XMLSlideShow;
 import org.apache.poi.xslf.usermodel.XSLFSlide;
@@ -20,22 +21,24 @@ import com.itextpdf.text.pdf.PdfWriter;
 public class PptxToPDFConverter extends Converter{
 
 	
-	private XSLFSlide[] slides;
-	
-	public PptxToPDFConverter(String inputFilePath, String outputFilePath) {
-		super(inputFilePath, outputFilePath);
+
+	public PptxToPDFConverter(InputStream inStream, OutputStream outStream, boolean showMessages, boolean closeStreamsWhenComplete) {
+		super(inStream, outStream, showMessages, closeStreamsWhenComplete);
 	}
 
 
+	private XSLFSlide[] slides;
+	
+
 	@Override
 	public void convert() throws Exception {
-		showLoadingMessage();
+		loading();
 		
 
 
 		Dimension pgsize = processSlides();
 		
-		showProcessingMessage();
+		processing();
 		
 	    double zoom = 2; // magnify it by 2 as typical slides are low res
 	    AffineTransform at = new AffineTransform();
@@ -44,7 +47,7 @@ public class PptxToPDFConverter extends Converter{
 		
 		Document document = new Document();
 
-		PdfWriter writer = PdfWriter.getInstance(document, getOutFileStream());
+		PdfWriter.getInstance(document, outStream);
 		document.open();
 		
 		for (int i = 0; i < getNumSlides(); i++) {
@@ -68,18 +71,17 @@ public class PptxToPDFConverter extends Converter{
 			document.add(image);
 		}
 		document.close();
-		writer.close();
-		showFinishedMessage();
+		
+		finished();
 		
 
 	}
 	
 	protected Dimension processSlides() throws IOException{
-		FileInputStream iStream = getInFileStream();
+		InputStream iStream = inStream;
 		XMLSlideShow ppt = new XMLSlideShow(iStream);
 		Dimension dimension = ppt.getPageSize();
 		slides = ppt.getSlides();
-		iStream.close();
 		return dimension;
 	}
 	

@@ -4,6 +4,8 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 
 
 
@@ -20,10 +22,28 @@ public abstract class Converter {
 	protected String inputFilePath;
 	protected String outputFilePath;
 	
-	public Converter(String inputFilePath, String outputFilePath) {
-		this.inputFilePath = inputFilePath;
-		this.outputFilePath = outputFilePath;
+	protected InputStream inStream;
+	protected OutputStream outStream;
+	
+	protected boolean showOutputMessages = false;
+	protected boolean closeStreamsWhenComplete = true;
+	
+	public Converter(InputStream inStream, OutputStream outStream, boolean showMessages, boolean closeStreamsWhenComplete){
+		this.inStream = inStream;
+		this.outStream = outStream;
+		this.showOutputMessages = showMessages;
+		this.closeStreamsWhenComplete = closeStreamsWhenComplete;
 	}
+	
+//	public Converter(String inputFilePath, String outputFilePath, boolean showMessages, boolean closeStreamsWhenComplete) throws IOException {
+//		inStream = getInFileStream(inputFilePath);
+//		outStream = getOutFileStream(outputFilePath);	
+//		this.showOutputMessages = showMessages;
+//		
+//		inputFilePath = inStream.toString();
+//		outputFilePath = outStream.toString();
+//		this.closeStreamsWhenComplete = closeStreamsWhenComplete;
+//	}
 	
 	
 	public abstract void convert() throws Exception;
@@ -33,38 +53,47 @@ public abstract class Converter {
 		startOfProcessTime = startTime;
 	}
 	
-	protected void showLoadingMessage(){
-		System.out.format(LOADING_FORMAT, inputFilePath);
+	protected void loading(){
+		printMessages(String.format(LOADING_FORMAT, inputFilePath));
 		startTime();
 	}
 	
-	protected void showProcessingMessage(){
+	protected void processing(){
 		long currentTime = System.currentTimeMillis();
 		long prevProcessTook = currentTime - startOfProcessTime;
 		
-		System.out.format(PROCESSING_FORMAT, prevProcessTook);
+		printMessages(String.format(PROCESSING_FORMAT, prevProcessTook));
 		
 		startOfProcessTime = System.currentTimeMillis();
 		
 	}
 	
-	protected void showFinishedMessage(){
+	protected void finished(){
 		long currentTime = System.currentTimeMillis();
 		long timeTaken = currentTime - startTime;
 		long prevProcessTook = currentTime - startOfProcessTime;
 
 		startOfProcessTime = System.currentTimeMillis();
 		
-		System.out.format(SAVING_FORMAT, outputFilePath, prevProcessTook, timeTaken);
+		if(closeStreamsWhenComplete){
+			try {
+				inStream.close();
+				outStream.close();
+			} catch (IOException e) {
+				//Nothing done
+			}
+		}
+		
+		printMessages(String.format(SAVING_FORMAT, outputFilePath, prevProcessTook, timeTaken));
 	}
 	
-	protected FileInputStream getInFileStream() throws FileNotFoundException{
+	protected InputStream getInFileStream(String inputFilePath) throws FileNotFoundException{
 		File inFile = new File(inputFilePath);
 		FileInputStream iStream = new FileInputStream(inFile);
 		return iStream;
 	}
 	
-	protected FileOutputStream getOutFileStream() throws IOException{
+	protected OutputStream getOutFileStream(String outputFilePath) throws IOException{
 		File outFile = new File(outputFilePath);
 		
 		try{
@@ -76,6 +105,12 @@ public abstract class Converter {
 		outFile.createNewFile();
 		FileOutputStream oStream = new FileOutputStream(outFile);
 		return oStream;
+	}
+	
+	protected void printMessages(String toBePrinted){
+		if(showOutputMessages){
+			System.out.println(toBePrinted);
+		}
 	}
 	
 	

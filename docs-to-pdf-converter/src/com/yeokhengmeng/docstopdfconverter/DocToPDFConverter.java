@@ -1,5 +1,5 @@
 package com.yeokhengmeng.docstopdfconverter;
-import java.io.FileInputStream;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintStream;
 
@@ -10,34 +10,33 @@ import org.docx4j.openpackaging.packages.WordprocessingMLPackage;
 
 public class DocToPDFConverter extends Converter {
 
-	public DocToPDFConverter(String inputFilePath, String outputFilePath) {
-		super(inputFilePath, outputFilePath);
+	
+
+
+	public DocToPDFConverter(InputStream inStream, OutputStream outStream, boolean showMessages, boolean closeStreamsWhenComplete) {
+		super(inStream, outStream, showMessages, closeStreamsWhenComplete);
 	}
 
 
 	@Override
 	public void convert() throws Exception{
 
-		showLoadingMessage();
+		loading();
 
-		FileInputStream iStream = getInFileStream();
+		InputStream iStream = inStream;
 
 
 		WordprocessingMLPackage wordMLPackage = getMLPackage(iStream);
 
-		iStream.close();
 
-		OutputStream os = getOutFileStream();
+		processing();
+		Docx4J.toPDF(wordMLPackage, outStream);
 
-		showProcessingMessage();
-		Docx4J.toPDF(wordMLPackage, os);
-		os.close();
-
-		showFinishedMessage();
-
+		finished();
+		
 	}
 
-	protected WordprocessingMLPackage getMLPackage(FileInputStream iStream) throws Exception{
+	protected WordprocessingMLPackage getMLPackage(InputStream iStream) throws Exception{
 		PrintStream originalStdout = System.out;
 		
 		//Disable stdout temporarily as Doc convert produces alot of output
@@ -46,6 +45,7 @@ public class DocToPDFConverter extends Converter {
 				//DO NOTHING
 			}
 		}));
+
 		WordprocessingMLPackage mlPackage = Doc.convert(iStream);
 		
 		System.setOut(originalStdout);
