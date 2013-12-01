@@ -47,7 +47,7 @@ public class PptxToPDFConverter extends Converter{
 		
 		Document document = new Document();
 
-		PdfWriter.getInstance(document, outStream);
+		PdfWriter writer = PdfWriter.getInstance(document, outStream);
 		document.open();
 		
 		for (int i = 0; i < getNumSlides(); i++) {
@@ -70,8 +70,11 @@ public class PptxToPDFConverter extends Converter{
 			image.setAbsolutePosition(0, 0);
 			document.add(image);
 		}
+		//Seems like I must close document if not output stream is not complete
 		document.close();
 		
+		//Not sure what repercussions are there for closing a writer but just do it.
+		writer.close();
 		finished();
 		
 
