@@ -6,7 +6,6 @@ import java.awt.geom.AffineTransform;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 
 import org.apache.poi.xslf.usermodel.XMLSlideShow;
@@ -45,7 +44,7 @@ public class PptxToPDFConverter extends Converter{
 		
 		Document document = new Document();
 
-		PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(outputFilePath));
+		PdfWriter writer = PdfWriter.getInstance(document, getOutFileStream());
 		document.open();
 		
 		for (int i = 0; i < getNumSlides(); i++) {
