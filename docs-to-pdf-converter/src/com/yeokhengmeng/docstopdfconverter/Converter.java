@@ -1,8 +1,4 @@
 package com.yeokhengmeng.docstopdfconverter;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -87,25 +83,6 @@ public abstract class Converter {
 		printMessages(String.format(SAVING_FORMAT, outputFilePath, prevProcessTook, timeTaken));
 	}
 	
-	protected InputStream getInFileStream(String inputFilePath) throws FileNotFoundException{
-		File inFile = new File(inputFilePath);
-		FileInputStream iStream = new FileInputStream(inFile);
-		return iStream;
-	}
-	
-	protected OutputStream getOutFileStream(String outputFilePath) throws IOException{
-		File outFile = new File(outputFilePath);
-		
-		try{
-			outFile.getParentFile().mkdirs();
-		} catch (NullPointerException e){
-			//Ignore error since it means not parent directories
-		}
-		
-		outFile.createNewFile();
-		FileOutputStream oStream = new FileOutputStream(outFile);
-		return oStream;
-	}
 	
 	protected void printMessages(String toBePrinted){
 		if(showOutputMessages){
