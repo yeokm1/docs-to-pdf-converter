@@ -16,7 +16,7 @@ import org.kohsuke.args4j.Option;
 public class MainClass{
 
 
-	public static final String VERSION_STRING = "\nDocs to PDF Converter Version 1.6 (8 Dec 2013)\n\nThe MIT License (MIT)\nCopyright (c) 2013-2014 Yeo Kheng Meng";
+	public static final String VERSION_STRING = "\nDocs to PDF Converter Version 1.7 (8 Dec 2013)\n\nThe MIT License (MIT)\nCopyright (c) 2013-2014 Yeo Kheng Meng";
 	public enum DOC_TYPE {
 		DOC,
 		DOCX,
@@ -160,16 +160,16 @@ public class MainClass{
 	//From http://stackoverflow.com/questions/941272/how-do-i-trim-a-file-extension-from-a-string-in-java
 	public static String changeExtensionToPDF(String originalPath) {
 
-		String separator = System.getProperty("file.separator");
-		String filename;
+//		String separator = System.getProperty("file.separator");
+		String filename = originalPath;
 
-		// Remove the path upto the filename.
-		int lastSeparatorIndex = originalPath.lastIndexOf(separator);
-		if (lastSeparatorIndex == -1) {
-			filename = originalPath;
-		} else {
-			filename = originalPath.substring(lastSeparatorIndex + 1);
-		}
+//		// Remove the path upto the filename.
+//		int lastSeparatorIndex = originalPath.lastIndexOf(separator);
+//		if (lastSeparatorIndex == -1) {
+//			filename = originalPath;
+//		} else {
+//			filename = originalPath.substring(lastSeparatorIndex + 1);
+//		}
 
 		// Remove the extension.
 		int extensionIndex = filename.lastIndexOf(".");
