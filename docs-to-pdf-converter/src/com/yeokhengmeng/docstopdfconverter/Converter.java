@@ -36,7 +36,7 @@ public abstract class Converter {
 	}
 
 	protected void loading(){
-		printMessages(String.format(LOADING_FORMAT));
+		sendToOutputOrNot(String.format(LOADING_FORMAT));
 		startTime();
 	}
 
@@ -44,7 +44,7 @@ public abstract class Converter {
 		long currentTime = System.currentTimeMillis();
 		long prevProcessTook = currentTime - startOfProcessTime;
 
-		printMessages(String.format(PROCESSING_FORMAT, prevProcessTook));
+		sendToOutputOrNot(String.format(PROCESSING_FORMAT, prevProcessTook));
 
 		startOfProcessTime = System.currentTimeMillis();
 
@@ -66,14 +66,19 @@ public abstract class Converter {
 			}
 		}
 
-		printMessages(String.format(SAVING_FORMAT, prevProcessTook, timeTaken));
+		sendToOutputOrNot(String.format(SAVING_FORMAT, prevProcessTook, timeTaken));
 	}
 
 
-	protected void printMessages(String toBePrinted){
+	private void sendToOutputOrNot(String toBePrinted){
 		if(showOutputMessages){
-			System.out.println(toBePrinted);
+			actuallySendToOutput(toBePrinted);
 		}
+	}
+	
+	
+	protected void actuallySendToOutput(String toBePrinted){
+		System.out.println(toBePrinted);
 	}
 
 

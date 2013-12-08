@@ -16,7 +16,7 @@ import org.kohsuke.args4j.Option;
 public class MainClass{
 
 
-	public static final String VERSION_STRING = "\nDocs to PDF Converter Version 1.5 (1 Dec 2013)\n\nThe MIT License (MIT)\nCopyright (c) 2013-2014 Yeo Kheng Meng";
+	public static final String VERSION_STRING = "\nDocs to PDF Converter Version 1.6 (8 Dec 2013)\n\nThe MIT License (MIT)\nCopyright (c) 2013-2014 Yeo Kheng Meng";
 	public enum DOC_TYPE {
 		DOC,
 		DOCX,
@@ -196,6 +196,7 @@ public class MainClass{
 		File outFile = new File(outputFilePath);
 		
 		try{
+			//Make all directories up to specified
 			outFile.getParentFile().mkdirs();
 		} catch (NullPointerException e){
 			//Ignore error since it means not parent directories
