@@ -44,7 +44,7 @@ DOC:<br>
 Generally ok but takes some time to convert.. I notice that after conversion, the paragraph spacing tends to increase affecting your page layout. Conversion is done using docx4j to convert DOC to DOCX then to PDF.<br>(Cannot use xdocreport once the DOCX data is obtained as the intermediate data structure is docx4j specific.)<br>
 
 DOCX:<br>
-Very good results. Fast conversion too.  Conversion is done using xdocreport library as it seems faster and more accurate then docx4j.<br>
+Very good results. Fast conversion too.  Conversion is done using xdocreport library as it seems faster and more accurate than docx4j.<br>
 
 PPT and PPTX:<br>
 Resulting file is a PDF comprising of a PNG embedded in each page. Should be good enough for printing. This is the limitation of the Apache POI and docx4j libraries.<br>
