@@ -10,19 +10,22 @@ I wanted a simple program that can convert Microsoft Office documents to PDF but
 <b>Command Line Usage:</b>
 
 java -jar doc-converter.jar -type "type" -input "path" -output "path" -verbose<br>
-eg. <br>
-java -jar doc-converter.jar -input test.doc<br>
-java -jar doc-converter.jar -i test.ppt -o ~\output.pdf<br>
-java -jar doc-converter.jar -i ~\no-extension-file -o ~\output.pdf -t docx<br>
+```
+java -jar doc-converter.jar -input test.doc
+java -jar doc-converter.jar -i test.ppt -o ~\output.pdf
+java -jar doc-converter.jar -i ~\no-extension-file -o ~\output.pdf -t docx
+```
 
 <b>Parameters:</b><br>
--inputPath (-i, -in, -input) "path" : specifies a path for the input file<br>
+```
+-inputPath (-i, -in, -input) "path" : specifies a path for the input file
  
--outputPath (-o, -out, -output) "path" : specifies a path for the output PDF, use input file directory and name.pdf if not specified (Optional)<br>
+-outputPath (-o, -out, -output) "path" : specifies a path for the output PDF, use input file directory and name.pdf if not specified (Optional)
 
--type (-t) [DOC | DOCX | PPT | PPTX | ODT] : Specifies doc converter. Leave blank to let program infer via file  extension (Optional)<br>
+-type (-t) [DOC | DOCX | PPT | PPTX | ODT] : Specifies doc converter. Leave blank to let program infer via file  extension (Optional)
 
--verbose (-v) : To view intermediate processing messages. (Optional)<br>
+-verbose (-v) : To view intermediate processing messages. (Optional)
+```
 
 <b>Library Usage:</b><br>
 1. Drop the jar into your lib folder and add to build path.<br>
