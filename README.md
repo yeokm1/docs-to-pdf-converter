@@ -28,16 +28,16 @@ java -jar doc-converter.jar -i ~\no-extension-file -o ~\output.pdf -t docx
 ```
 
 <b>Library Usage:</b><br>
-1. Drop the jar into your lib folder and add to build path.<br>
-2. Choose the converter of your choice, they are named DocToPDFConverter, DocxToPDFConverter, PptToPDFConverter, PptxToPDFConverter and OdtToPDFConverter.<br>
-3. Instantiate with 4 parameters<br>
+<ol>
+<li>Drop the jar into your lib folder and add to build path.</li>
+<li>Choose the converter of your choice, they are named DocToPDFConverter, DocxToPDFConverter, PptToPDFConverter, PptxToPDFConverter and OdtToPDFConverter.</li>
+<li>Instantiate with 4 parameters</li>
 3a: InputStream inStream: Document source stream to be converted<br>
 3b: OutputStream outStream: Document output stream<br>
 3c: boolean showMessages: Whether to show intermediate processing messages to Standard Out (stdout)<br>
 3d: boolean closeStreamsWhenComplete: Whether to close input and output streams when complete<br>
-4. Call the "convert()" method and wait.<br>
-5. Done!<br>
-
+<li>Call the "convert()" method and wait.</
+</ol>
 
 <b>Caveats and technical details:</b><br>
 This tool relies on Apache POI, xdocreport, docx4j and odfdom libraries. They are not 100% reliable and the output format may not always be what you desire.<br>
