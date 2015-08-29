@@ -51,11 +51,11 @@
 			<artifactId>poi-scratchpad</artifactId>
 			<version>3.12</version>
 		</dependency>
-		<dependency>
+<!-- 		<dependency>
 			<groupId>fr.opensagres</groupId>
 			<artifactId>org.apache.poi.xwpf.converter</artifactId>
 			<version>0.9.1</version>
-		</dependency>
+		</dependency>  -->
 		<dependency>
 			<groupId>fr.opensagres.xdocreport</groupId>
 			<artifactId>org.apache.poi.xwpf.converter.pdf</artifactId>
@@ -69,6 +69,11 @@
 		<dependency>
 			<groupId>fr.opensagres.xdocreport</groupId>
 			<artifactId>org.odftoolkit.odfdom.converter.pdf</artifactId>
+			<version>1.0.5</version>
+		</dependency>
+		<dependency>
+			<groupId>fr.opensagres.xdocreport</groupId>
+			<artifactId>fr.opensagres.xdocreport.itext.extension</artifactId>
 			<version>1.0.5</version>
 		</dependency>
 	</dependencies>
