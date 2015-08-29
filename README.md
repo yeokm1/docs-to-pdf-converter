@@ -10,31 +10,34 @@ I wanted a simple program that can convert Microsoft Office documents to PDF but
 <b>Command Line Usage:</b>
 
 java -jar doc-converter.jar -type "type" -input "path" -output "path" -verbose<br>
-eg. <br>
-java -jar doc-converter.jar -input test.doc<br>
-java -jar doc-converter.jar -i test.ppt -o ~\output.pdf<br>
-java -jar doc-converter.jar -i ~\no-extension-file -o ~\output.pdf -t docx<br>
+```
+java -jar doc-converter.jar -input test.doc
+java -jar doc-converter.jar -i test.ppt -o ~\output.pdf
+java -jar doc-converter.jar -i ~\no-extension-file -o ~\output.pdf -t docx
+```
 
 <b>Parameters:</b><br>
--inputPath (-i, -in, -input) "path" : specifies a path for the input file<br>
+```
+-inputPath (-i, -in, -input) "path" : specifies a path for the input file
  
--outputPath (-o, -out, -output) "path" : specifies a path for the output PDF, use input file directory and name.pdf if not specified (Optional)<br>
+-outputPath (-o, -out, -output) "path" : specifies a path for the output PDF, use input file directory and name.pdf if not specified (Optional)
 
--type (-t) [DOC | DOCX | PPT | PPTX | ODT] : Specifies doc converter. Leave blank to let program infer via file  extension (Optional)<br>
+-type (-t) [DOC | DOCX | PPT | PPTX | ODT] : Specifies doc converter. Leave blank to let program infer via file  extension (Optional)
 
--verbose (-v) : To view intermediate processing messages. (Optional)<br>
+-verbose (-v) : To view intermediate processing messages. (Optional)
+```
 
 <b>Library Usage:</b><br>
-1. Drop the jar into your lib folder and add to build path.<br>
-2. Choose the converter of your choice, they are named DocToPDFConverter, DocxToPDFConverter, PptToPDFConverter, PptxToPDFConverter and OdtToPDFConverter.<br>
-3. Instantiate with 4 parameters<br>
+<ol>
+<li>Drop the jar into your lib folder and add to build path.</li>
+<li>Choose the converter of your choice, they are named DocToPDFConverter, DocxToPDFConverter, PptToPDFConverter, PptxToPDFConverter and OdtToPDFConverter.</li>
+<li>Instantiate with 4 parameters</li>
 3a: InputStream inStream: Document source stream to be converted<br>
 3b: OutputStream outStream: Document output stream<br>
 3c: boolean showMessages: Whether to show intermediate processing messages to Standard Out (stdout)<br>
 3d: boolean closeStreamsWhenComplete: Whether to close input and output streams when complete<br>
-4. Call the "convert()" method and wait.<br>
-5. Done!<br>
-
+<li>Call the "convert()" method and wait.</
+</ol>
 
 <b>Caveats and technical details:</b><br>
 This tool relies on Apache POI, xdocreport, docx4j and odfdom libraries. They are not 100% reliable and the output format may not always be what you desire.<br>
@@ -44,7 +47,7 @@ DOC:<br>
 Generally ok but takes some time to convert.. I notice that after conversion, the paragraph spacing tends to increase affecting your page layout. Conversion is done using docx4j to convert DOC to DOCX then to PDF.<br>(Cannot use xdocreport once the DOCX data is obtained as the intermediate data structure is docx4j specific.)<br>
 
 DOCX:<br>
-Very good results. Fast conversion too.  Conversion is done using xdocreport library as it seems faster and more accurate then docx4j.<br>
+Very good results. Fast conversion too.  Conversion is done using xdocreport library as it seems faster and more accurate than docx4j.<br>
 
 PPT and PPTX:<br>
 Resulting file is a PDF comprising of a PNG embedded in each page. Should be good enough for printing. This is the limitation of the Apache POI and docx4j libraries.<br>
