@@ -47,6 +47,11 @@
 			<version>3.12</version>
 		</dependency>
 		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-scratchpad</artifactId>
+			<version>3.12</version>
+		</dependency>
+		<dependency>
 			<groupId>fr.opensagres</groupId>
 			<artifactId>org.apache.poi.xwpf.converter</artifactId>
 			<version>0.9.1</version>
