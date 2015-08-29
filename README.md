@@ -1,8 +1,7 @@
 Docs to PDF Converter
 =====================
 
-A standalone Java library/command line tool that converts DOC, DOCX, PPT, PPTX and ODT documents to pdf files. (Requires JRE 6)
-
+A standalone Java library/command line tool that converts DOC, DOCX, PPT, PPTX and ODT documents to pdf files. (Requires JRE 7)
 
 ###Why?  
 I wanted a simple program that can convert Microsoft Office documents to PDF but without dependencies like LibreOffice or expensive proprietary solutions. Seeing as how code and libraries to convert each individual format is scattered around the web, I decided to combine all those solutions into one single program. Along the way, I decided to add ODT support as well since I encountered the code too. 
@@ -55,13 +54,16 @@ Resulting file is a PDF comprising of a PNG embedded in each page. Should be goo
 ODT:
 Quality and speed as good as DOCX. Conversion is done using odfdom of the Apache ODF Toolkit.
 
-
 ###Main Libraries  
-Apache POI:  https://poi.apache.org/
-xdocreport: http://code.google.com/p/xdocreport/
-docx4j: http://www.docx4java.org/
-odfdom: https://incubator.apache.org/odftoolkit/odfdom/
-and others...
+Apache POI:  https://poi.apache.org/  
+xdocreport: http://code.google.com/p/xdocreport/  
+docx4j: http://www.docx4java.org/  
+odfdom: https://incubator.apache.org/odftoolkit/odfdom/  
+and others...  
+
+##Compiling the code
+
+I'm using Eclipse Mars IDE Java EE with the M2Eclipse plugin. Simply create a workspace and import my project into it. Let Maven do its work in downloading all the necessary dependencies. Once everything is downloaded, you should be able to run the MainClass.
 
 The MIT License (MIT)
 Copyright (c) 2013-2014 Yeo Kheng Meng
