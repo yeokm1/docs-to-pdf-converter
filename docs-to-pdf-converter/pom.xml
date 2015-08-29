@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>docs-to-pdf-converter</groupId>
 	<artifactId>docs-to-pdf-converter</artifactId>
-	<version>1.7</version>
+	<version>1.8</version>
 	<build>
 		<sourceDirectory>src</sourceDirectory>
 		<resources>
