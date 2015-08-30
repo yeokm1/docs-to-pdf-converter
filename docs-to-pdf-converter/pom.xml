@@ -51,11 +51,6 @@
 			<artifactId>poi-scratchpad</artifactId>
 			<version>3.12</version>
 		</dependency>
-<!-- 		<dependency>
-			<groupId>fr.opensagres</groupId>
-			<artifactId>org.apache.poi.xwpf.converter</artifactId>
-			<version>0.9.1</version>
-		</dependency>  -->
 		<dependency>
 			<groupId>fr.opensagres.xdocreport</groupId>
 			<artifactId>org.apache.poi.xwpf.converter.pdf</artifactId>
