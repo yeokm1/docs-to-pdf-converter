@@ -69,6 +69,8 @@ and others...
 
 I'm using Eclipse Mars IDE Java EE with the M2Eclipse plugin. Simply create a workspace and import my project into it. Let Maven do its work in downloading all the necessary dependencies. Once everything is downloaded, you should be able to run the MainClass.
 
+More details can be found in the [Wiki section](https://github.com/yeokm1/docs-to-pdf-converter/wiki/Setting-up-your-IDE-to-compile-the-project).
+
 The MIT License (MIT)
 Copyright (c) 2013-2014 Yeo Kheng Meng
 
