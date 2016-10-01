@@ -1,6 +1,8 @@
 Docs to PDF Converter
 =====================
 
+#### (I'm not maintaining this code as I neither have personal resources nor am I still using this project. I'll be happy to oblige if you have any pull requests or even if you wish to be a co-maintainer.)
+
 A standalone Java library/command line tool that converts DOC, DOCX, PPT, PPTX and ODT documents to pdf files. (Requires JRE 7)
 
 The v1.7 release has not been updated for about 2 years although it seems quite reliable for me. In response to an [issue request](https://github.com/yeokm1/docs-to-pdf-converter/issues/1) to update the libraries, I have done so with the new v1.8. I now use Maven to managed the libraries in the pom.xml file.
