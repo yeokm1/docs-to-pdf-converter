@@ -24,7 +24,7 @@ I have not tested v1.8 much so if you face any issues, you can still use v1.7 in
 * [Compiling the code](#compiling-the-code)
 
 ### Why?  
-I wanted a simple program that can convert Microsoft Office documents to PDF but without dependencies like LibreOffice or expensive proprietary solutions. Seeing as how code and libraries to convert each individual format is scattered around the web, I decided to combine all those solutions into one single program. Along the way, I decided to add ODT support as well since I encountered the code too. 
+I wanted a simple program that can convert Microsoft Office documents to PDF but without dependencies like LibreOffice or expensive proprietary solutions. Seeing as how code and libraries to convert each individual format is scattered around the web, I decided to combine all those solutions into one single program. Along the way, I decided to add ODT support as well since I encountered the code too.
 
 ### Command Line Usage:  
 
@@ -38,7 +38,7 @@ java -jar doc-converter.jar -i ~\no-extension-file -o ~\output.pdf -t docx
 ### Parameters:  
 ```
 -inputPath (-i, -in, -input) "path" : specifies a path for the input file
- 
+
 -outputPath (-o, -out, -output) "path" : specifies a path for the output PDF, use input file directory and name.pdf if not specified (Optional)
 
 -type (-t) [DOC | DOCX | PPT | PPTX | ODT] : Specifies doc converter. Leave blank to let program infer via file  extension (Optional)
@@ -83,10 +83,20 @@ and others...
 
 ## Compiling the code
 
+### I just want the jar
+
+```bash
+# If you don't already have Maven in your Mac
+brew install maven
+mvn clean package
+```
+
+The output jar file can be found in the `target` folder.
+
+### Development
 I'm using Eclipse Mars IDE Java EE with the M2Eclipse plugin. Simply create a workspace and import my project into it. Let Maven do its work in downloading all the necessary dependencies. Once everything is downloaded, you should be able to run the MainClass.
 
 More details can be found in the [Wiki section](https://github.com/yeokm1/docs-to-pdf-converter/wiki/Setting-up-your-IDE-to-compile-the-project).
 
 The MIT License (MIT)
 Copyright (c) 2013-2014 Yeo Kheng Meng
-
